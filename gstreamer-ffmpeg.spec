@@ -47,6 +47,7 @@ formaty multimedialne.
 %setup -q -n %{gstname}-%{version}
 
 %build
+cp /usr/share/automake/config.sub .
 %configure
 
 %{__make}
