@@ -9,13 +9,13 @@
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl):	Wtyczka do ¶rodowiska obróbki strumieni GStreamer u¿ywaj±ca FFmpeg
 Name:		gstreamer-ffmpeg
-Version:	0.8.1
+Version:	0.8.2
 Release:	1
 License:	LGPL
 Group:		Libraries
-URL:		http://gstreamer.net/
 Source0:	http://gstreamer.freedesktop.org/src/%{gstname}/%{gstname}-%{version}.tar.bz2
-# Source0-md5:	f020b9f394fec2712964cd11ac46b43d
+# Source0-md5:	834270830aa7a4c07485d5185b77af17
+URL:		http://gstreamer.net/
 BuildRequires:	gstreamer-devel >= 0.8.3
 Requires(post,postun):  %{_bindir}/gst-register
 Requires:	gstreamer >= 0.8.3
@@ -50,7 +50,6 @@ formaty multimedialne.
 cp /usr/share/automake/config.sub .
 cp /usr/share/automake/config.sub gst-libs/ext/ffmpeg
 %configure
-
 %{__make}
 
 %install
