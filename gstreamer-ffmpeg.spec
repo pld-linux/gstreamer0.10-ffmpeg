@@ -48,6 +48,7 @@ formaty multimedialne.
 
 %build
 cp /usr/share/automake/config.sub .
+cp /usr/share/automake/config.sub gst-libs/ext/ffmpeg
 %configure
 
 %{__make}
