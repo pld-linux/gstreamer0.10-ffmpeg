@@ -13,7 +13,7 @@ Version:	0.8.2
 Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	http://gstreamer.freedesktop.org/src/%{gstname}/%{gstname}-%{version}.tar.bz2
+Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
 # Source0-md5:	834270830aa7a4c07485d5185b77af17
 URL:		http://gstreamer.net/
 BuildRequires:	gstreamer-devel >= 0.8.3
@@ -64,9 +64,11 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{gst_major_ver}/*.la
 rm -rf $RPM_BUILD_ROOT
 
 %post
+umask 022
 %{_bindir}/gst-register --gst-registry=%{gstreg} > /dev/null 2> /dev/null
 
 %postun
+umask 022
 %{_bindir}/gst-register --gst-registry=%{gstreg} > /dev/null 2> /dev/null
 
 %files
