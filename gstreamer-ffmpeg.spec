@@ -7,7 +7,7 @@
 %define gstreg  %{_var}/cache/gstreamer/registry.xml
 
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
-Summary(pl):    Wtyczka do ¶rodowiska obróbki strumieni GStreamer uzywaj±ca FFmpeg
+Summary(pl):	Wtyczka do ¶rodowiska obróbki strumieni GStreamer u¿ywaj±ca FFmpeg
 Name:		gstreamer-ffmpeg
 Version:	0.8.0
 Release:	0.1
@@ -20,7 +20,6 @@ BuildRequires:	gstreamer-devel >= 0.8.0
 Requires(post,postun):  %{_bindir}/gst-register
 Requires:	gstreamer >= 0.8.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters
@@ -37,7 +36,7 @@ popular multimedia formats.
 GStreamer to ¶rodowisko obróbki danych strumieniowych, bazuj±ce na
 grafie filtrów operuj±cych na danych medialnych. Aplikacje u¿ywaj±ce
 tej biblioteki mog± robiæ wszystko od przetwarzania d¼wiêku w czasie
-rzeczywistym, do odtwarzania filmów i czegokolwiek innego zwi±zego z
+rzeczywistym, do odtwarzania filmów i czegokolwiek innego zwi±zanego z
 mediami. Architektura bazuj±ca na wtyczkach pozwala na ³atwe dodawanie
 nowych typów danych lub mo¿liwo¶ci obróbki.
 
@@ -72,4 +71,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README
-%{_libdir}/gstreamer-%{gst_major_ver}/libgstffmpeg.so
+%attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstffmpeg.so
