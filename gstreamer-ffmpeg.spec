@@ -16,6 +16,7 @@ Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
 # Source0-md5:	2f976054d21e74ef1094a6707e2367a8
 URL:		http://gstreamer.net/
+BuildRequires:	automake
 BuildRequires:	gstreamer-plugins-devel >= 0.8.4
 Requires(post,postun):  %{_bindir}/gst-register
 Requires:	gstreamer-plugins >= 0.8.4
