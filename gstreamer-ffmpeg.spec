@@ -3,23 +3,26 @@
 # Use shared ffmpeg lib instead of builtin - anyone wants to do it?
 #
 %define gstname gst-ffmpeg
-%define gst_major_ver   0.8
-%define gstreg  %{_var}/cache/gstreamer/registry.xml
+%define gst_major_ver   0.10
 
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl):	Wtyczka do ¶rodowiska obróbki strumieni GStreamer u¿ywaj±ca FFmpeg
 Name:		gstreamer-ffmpeg
-Version:	0.8.7
+Version:	0.10.0
 Release:	1
-License:	LGPL
+License:	GPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
-# Source0-md5:	6435ef3954ee05de79829e262f86187a
+# Source0-md5:	53625b1b21203ff99f115c8ecb0718cd
+Patch0:		%{name}-nocpp.patch
 URL:		http://gstreamer.net/
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	gstreamer-plugins-devel >= 0.8.4
+BuildRequires:	gstreamer-plugins-base-devel >= 0.10
+BuildRequires:	libtool
+BuildRequires:	pkgconfig
 Requires(post,postun):  %{_bindir}/gst-register
-Requires:	gstreamer-plugins >= 0.8.4
+Requires:	gstreamer-plugins-base >= 0.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -46,10 +49,23 @@ formaty multimedialne.
 
 %prep
 %setup -q -n %{gstname}-%{version}
+%patch0 -p1
 
 %build
-cp /usr/share/automake/config.sub .
-cp /usr/share/automake/config.sub gst-libs/ext/ffmpeg
+#cp -f /usr/share/automake/config.sub .
+#cp -f /usr/share/automake/config.sub gst-libs/ext/ffmpeg
+cd gst-libs/ext/ffmpeg
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd ../../..
+%{__libtoolize}
+%{__aclocal} -I common/m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure
 %{__make}
 
@@ -64,15 +80,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{gst_major_ver}/*.la
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-umask 022
-%{_bindir}/gst-register --gst-registry=%{gstreg} > /dev/null 2> /dev/null
-
-%postun
-umask 022
-%{_bindir}/gst-register --gst-registry=%{gstreg} > /dev/null 2> /dev/null
-
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS README
+%doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstffmpeg.so
