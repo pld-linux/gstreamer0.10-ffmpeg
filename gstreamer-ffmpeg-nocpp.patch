@@ -1,0 +1,10 @@
+--- gst-ffmpeg-0.10.0/gst-libs/ext/ffmpeg/libavformat/Makefile.am.orig	2005-10-21 16:30:30.000000000 +0200
++++ gst-ffmpeg-0.10.0/gst-libs/ext/ffmpeg/libavformat/Makefile.am	2006-01-14 18:43:50.575886750 +0100
+@@ -136,7 +136,6 @@
+ 	$(encoder_SRC) \
+ 	$(image_SRC) \
+ 	$(audiooss_SRC) \
+-	$(audiobeos_SRC) \
+ 	$(v4l_SRC) \
+ 	$(bktr_SRC) \
+ 	$(dv_SRC) \
