@@ -21,7 +21,6 @@ BuildRequires:	automake
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-Requires(post,postun):  %{_bindir}/gst-register
 Requires:	gstreamer-plugins-base >= 0.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
