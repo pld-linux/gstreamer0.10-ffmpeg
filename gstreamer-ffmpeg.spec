@@ -24,6 +24,8 @@ BuildRequires:	pkgconfig
 Requires:	gstreamer-plugins-base >= 0.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		specflags_ppc	-maltivec
+
 %description
 GStreamer is a streaming-media framework, based on graphs of filters
 which operate on media data. Applications using this library can do
