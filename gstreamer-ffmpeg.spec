@@ -8,20 +8,21 @@
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl):	Wtyczka do ¶rodowiska obróbki strumieni GStreamer u¿ywaj±ca FFmpeg
 Name:		gstreamer-ffmpeg
-Version:	0.10.1
+Version:	0.10.2
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
-# Source0-md5:	e21aef9a84d67dea9a68c1379781f763
+# Source0-md5:	3c7fb1cd1308b1972a76b86bb29fc890
 Patch0:		%{name}-nocpp.patch
 URL:		http://gstreamer.net/
-BuildRequires:	autoconf >= 2.50
+BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10
+BuildRequires:	gstreamer-plugins-base-devel >= 0.10.4
+BuildRequires:	liboil-devel >= 0.3.6
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-Requires:	gstreamer-plugins-base >= 0.10
+Requires:	gstreamer-plugins-base >= 0.10.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags_ppc	-maltivec
@@ -65,7 +66,8 @@ cd ../../..
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--disable-static
 %{__make}
 
 %install
@@ -83,3 +85,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstffmpeg.so
+%attr(755,root,root) %{_libdir}/gstreamer-%{gst_major_ver}/libgstpostproc.so
