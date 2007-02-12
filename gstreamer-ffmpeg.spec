@@ -6,7 +6,7 @@
 %define gst_major_ver   0.10
 
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
-Summary(pl):	Wtyczka do ¶rodowiska obróbki strumieni GStreamer u¿ywaj±ca FFmpeg
+Summary(pl.UTF-8):   Wtyczka do Å›rodowiska obrÃ³bki strumieni GStreamer uÅ¼ywajÄ…ca FFmpeg
 Name:		gstreamer-ffmpeg
 Version:	0.10.2
 Release:	1
@@ -38,15 +38,15 @@ installing new plug-ins.
 This plugin contains the FFmpeg codecs, containing codecs for most
 popular multimedia formats.
 
-%description -l pl
-GStreamer to ¶rodowisko obróbki danych strumieniowych, bazuj±ce na
-grafie filtrów operuj±cych na danych medialnych. Aplikacje u¿ywaj±ce
-tej biblioteki mog± robiæ wszystko od przetwarzania d¼wiêku w czasie
-rzeczywistym, do odtwarzania filmów i czegokolwiek innego zwi±zanego z
-mediami. Architektura bazuj±ca na wtyczkach pozwala na ³atwe dodawanie
-nowych typów danych lub mo¿liwo¶ci obróbki.
+%description -l pl.UTF-8
+GStreamer to Å›rodowisko obrÃ³bki danych strumieniowych, bazujÄ…ce na
+grafie filtrÃ³w operujÄ…cych na danych medialnych. Aplikacje uÅ¼ywajÄ…ce
+tej biblioteki mogÄ… robiÄ‡ wszystko od przetwarzania dÅºwiÄ™ku w czasie
+rzeczywistym, do odtwarzania filmÃ³w i czegokolwiek innego zwiÄ…zanego z
+mediami. Architektura bazujÄ…ca na wtyczkach pozwala na Å‚atwe dodawanie
+nowych typÃ³w danych lub moÅ¼liwoÅ›ci obrÃ³bki.
 
-Wtyczka ta zawiera kodeki FFmpeg, potrafi±ce zdekodowaæ najpopularniejsze
+Wtyczka ta zawiera kodeki FFmpeg, potrafiÄ…ce zdekodowaÄ‡ najpopularniejsze
 formaty multimedialne.
 
 %prep
