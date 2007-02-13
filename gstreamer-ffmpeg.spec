@@ -6,7 +6,7 @@
 %define gst_major_ver   0.10
 
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
-Summary(pl.UTF-8):   Wtyczka do środowiska obróbki strumieni GStreamer używająca FFmpeg
+Summary(pl.UTF-8):	Wtyczka do środowiska obróbki strumieni GStreamer używająca FFmpeg
 Name:		gstreamer-ffmpeg
 Version:	0.10.2
 Release:	1
