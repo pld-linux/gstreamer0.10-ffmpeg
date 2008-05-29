@@ -1,31 +1,26 @@
-#
-# TODO
-# Use shared ffmpeg lib instead of builtin - anyone wants to do it?
-#
 %define gstname gst-ffmpeg
 %define gst_major_ver   0.10
 
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl.UTF-8):	Wtyczka do środowiska obróbki strumieni GStreamer używająca FFmpeg
 Name:		gstreamer-ffmpeg
-Version:	0.10.3
+Version:	0.10.4
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
-# Source0-md5:	c07fd2da0835989fc4eae291cbc05f09
-Patch0:		%{name}-nocpp.patch
+# Source0-md5:	761cbbc0b5f077449082d0ea7527941e
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
+# libavutil,libswscale needed
+BuildRequires:	ffmpeg-devel >= 0.4.9-4.20060530
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.4
 BuildRequires:	liboil-devel >= 0.3.6
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires:	gstreamer-plugins-base >= 0.10.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		specflags_ppc	-maltivec
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters
@@ -51,23 +46,16 @@ najpopularniejsze formaty multimedialne.
 
 %prep
 %setup -q -n %{gstname}-%{version}
-%patch0 -p1
 
 %build
-cd gst-libs/ext/ffmpeg
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-cd ../../..
 %{__libtoolize}
 %{__aclocal} -I common/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-static
+	--disable-static \
+	--with-system-ffmpeg
 %{__make}
 
 %install
