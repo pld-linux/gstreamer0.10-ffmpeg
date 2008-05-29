@@ -15,11 +15,11 @@ BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 # libavutil,libswscale needed
 BuildRequires:	ffmpeg-devel >= 0.4.9-4.20060530
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10.4
+BuildRequires:	gstreamer-plugins-base-devel >= 0.10.13
 BuildRequires:	liboil-devel >= 0.3.6
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-Requires:	gstreamer-plugins-base >= 0.10.4
+Requires:	gstreamer-plugins-base >= 0.10.13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
