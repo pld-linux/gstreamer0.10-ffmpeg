@@ -10,6 +10,7 @@ License:	GPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
 # Source0-md5:	761cbbc0b5f077449082d0ea7527941e
+Patch0:		%{name}-includes.patch
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -46,6 +47,7 @@ najpopularniejsze formaty multimedialne.
 
 %prep
 %setup -q -n %{gstname}-%{version}
+%patch -p1
 
 %build
 %{__libtoolize}
@@ -53,7 +55,9 @@ najpopularniejsze formaty multimedialne.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+
 %configure \
+	CPPFLAGS="%{rpmcflags} -I/usr/include/libavformat -I/usr/include/libavcodec" \
 	--disable-static \
 	--with-system-ffmpeg
 %{__make}
