@@ -20,6 +20,7 @@ BuildRequires:	gstreamer-plugins-base-devel >= 0.10.13
 BuildRequires:	liboil-devel >= 0.3.6
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.470
 Requires:	gstreamer-plugins-base >= 0.10.13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,7 +58,7 @@ najpopularniejsze formaty multimedialne.
 %{__automake}
 
 %configure \
-	CPPFLAGS="%{rpmcflags} -I/usr/include/libavformat -I/usr/include/libavcodec" \
+	CPPFLAGS="%{rpmcppflags} -I/usr/include/libavformat -I/usr/include/libavcodec" \
 	--disable-static \
 	--with-system-ffmpeg
 %{__make}
