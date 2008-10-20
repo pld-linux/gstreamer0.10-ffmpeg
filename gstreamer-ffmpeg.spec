@@ -4,18 +4,16 @@
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl.UTF-8):	Wtyczka do środowiska obróbki strumieni GStreamer używająca FFmpeg
 Name:		gstreamer-ffmpeg
-Version:	0.10.4
-Release:	4
+Version:	0.10.5
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
-# Source0-md5:	761cbbc0b5f077449082d0ea7527941e
-Patch0:		%{name}-includes.patch
+# Source0-md5:	1ff579945eafcfddab420b734c3a0c92
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 # libavutil,libswscale needed
-BuildRequires:	ffmpeg-devel >= 0.4.9-4.20060530
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.13
 BuildRequires:	liboil-devel >= 0.3.6
 BuildRequires:	libtool
@@ -48,7 +46,6 @@ najpopularniejsze formaty multimedialne.
 
 %prep
 %setup -q -n %{gstname}-%{version}
-%patch -p1
 
 %build
 %{__libtoolize}
@@ -58,9 +55,8 @@ najpopularniejsze formaty multimedialne.
 %{__automake}
 
 %configure \
-	CPPFLAGS="%{rpmcppflags} -I/usr/include/libavformat -I/usr/include/libavcodec" \
-	--disable-static \
-	--with-system-ffmpeg
+	CPPFLAGS="%{rpmcppflags}" \
+	--disable-static
 %{__make}
 
 %install
