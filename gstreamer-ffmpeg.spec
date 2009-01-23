@@ -1,11 +1,13 @@
 %define gstname gst-ffmpeg
 %define gst_major_ver   0.10
-
+#
+%include	/usr/lib/rpm/macros.gstreamer
+#
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl.UTF-8):	Wtyczka do środowiska obróbki strumieni GStreamer używająca FFmpeg
 Name:		gstreamer-ffmpeg
 Version:	0.10.6
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
@@ -13,6 +15,7 @@ Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.t
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
+BuildRequires:	gstreamer-devel >= 0.10.22
 # libavutil,libswscale needed
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.13
 BuildRequires:	liboil-devel >= 0.3.6
