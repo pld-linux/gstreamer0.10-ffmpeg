@@ -1,5 +1,9 @@
-%define gstname gst-ffmpeg
-%define gst_major_ver   0.10
+# Conditional build:
+%bcond_with	vdpau		# build FFmpeg with nvidia VDPAU
+#
+%define		gstname gst-ffmpeg
+%define		gst_major_ver   0.10
+%define		gst_req_ver	0.10.22
 #
 %include	/usr/lib/rpm/macros.gstreamer
 #
@@ -15,14 +19,18 @@ Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.t
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	gstreamer-devel >= 0.10.22
+BuildRequires:	gstreamer-devel >= %{gst_req_ver}
 # libavutil,libswscale needed
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10.13
+BuildRequires:	gstreamer-plugins-base-devel >= %{gst_req_ver}
 BuildRequires:	liboil-devel >= 0.3.6
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.470
-Requires:	gstreamer-plugins-base >= 0.10.13
+%if %{with vdpau}
+BuildRequires:	xorg-driver-video-nvidia-devel >= 180.22
+BuildRequires:	xorg-lib-libXvMC-devel
+%endif
+Requires:	gstreamer-plugins-base >= %{gst_req_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -59,6 +67,7 @@ najpopularniejsze formaty multimedialne.
 
 %configure \
 	CPPFLAGS="%{rpmcppflags}" \
+	%{?with_vdpau:--with-ffmpeg-extra-configure="--enable-vdpau"} \
 	--disable-static
 %{__make}
 
