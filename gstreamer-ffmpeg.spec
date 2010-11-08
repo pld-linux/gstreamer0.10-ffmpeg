@@ -1,18 +1,20 @@
+#
 # Conditional build:
 %bcond_with	vdpau		# build FFmpeg with nvidia VDPAU
-#
+%bcond_without	system_ffmpeg	# system FFmpeg. upstream does not accept bugs with system ffmpeg
+
 %define		gstname gst-ffmpeg
 %define		gst_major_ver   0.10
 %define		gst_req_ver	0.10.22
-#
+
 %include	/usr/lib/rpm/macros.gstreamer
-#
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl.UTF-8):	Wtyczka do środowiska obróbki strumieni GStreamer używająca FFmpeg
 Name:		gstreamer-ffmpeg
 Version:	0.10.11
 Release:	1
-License:	GPL v2+
+# the ffmpeg plugin is LGPL, the postproc plugin is GPL
+License:	GPL v2+ and LGPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
 # Source0-md5:	0d23197ba7ac06ea34fa66d38469ebe5
@@ -21,6 +23,7 @@ BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	gstreamer-devel >= %{gst_req_ver}
 # libavutil,libswscale needed
+%{?with_system_ffmpeg:BuildRequires:	ffmpeg-devel}
 BuildRequires:	gstreamer-plugins-base-devel >= %{gst_req_ver}
 BuildRequires:	liboil-devel >= 0.3.6
 BuildRequires:	libtool
@@ -67,6 +70,7 @@ najpopularniejsze formaty multimedialne.
 
 %configure \
 	CPPFLAGS="%{rpmcppflags}" \
+	%{?with_system_ffmpeg:--with-system-ffmpeg} \
 	%{?with_vdpau:--with-ffmpeg-extra-configure="--enable-vdpau"} \
 	--disable-static
 %{__make}
