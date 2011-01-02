@@ -1,7 +1,7 @@
 #
 # Conditional build:
-%bcond_with	vdpau		# build FFmpeg with nvidia VDPAU
-%bcond_without	system_ffmpeg	# system FFmpeg. upstream does not accept bugs with system ffmpeg
+%bcond_without	vdpau		# build FFmpeg without VDPAU support
+%bcond_without	system_ffmpeg	# system FFmpeg (note: upstream does not accept bugs with system ffmpeg)
 
 %define		gstname gst-ffmpeg
 %define		gst_major_ver   0.10
@@ -19,21 +19,29 @@ Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
 # Source0-md5:	0d23197ba7ac06ea34fa66d38469ebe5
 URL:		http://gstreamer.net/
-BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.60
+BuildRequires:	automake >= 1:1.10
 BuildRequires:	gstreamer-devel >= %{gst_req_ver}
-# libavutil,libswscale needed
-%{?with_system_ffmpeg:BuildRequires:	ffmpeg-devel}
+BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	gstreamer-plugins-base-devel >= %{gst_req_ver}
-BuildRequires:	liboil-devel >= 0.3.6
 BuildRequires:	libtool
+BuildRequires:	orc-devel >= 0.4.5
 BuildRequires:	pkgconfig
+BuildRequires:	python >= 2.1
 BuildRequires:	rpmbuild(macros) >= 1.470
+%if %{with system_ffmpeg}
+# libavutil,libswscale needed
+BuildRequires:	ffmpeg-devel >= 0.6
+%else
+BuildRequires:	bzip2-devel
+# TODO: fill the rest of ffmpeg dependencies used here
 %if %{with vdpau}
-BuildRequires:	xorg-driver-video-nvidia-devel >= 180.22
+BuildRequires:	libvdpau-devel
 BuildRequires:	xorg-lib-libXvMC-devel
 %endif
+%endif
 Requires:	gstreamer-plugins-base >= %{gst_req_ver}
+Requires:	orc >= 0.4.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -72,6 +80,7 @@ najpopularniejsze formaty multimedialne.
 	CPPFLAGS="%{rpmcppflags}" \
 	%{?with_system_ffmpeg:--with-system-ffmpeg} \
 	%{?with_vdpau:--with-ffmpeg-extra-configure="--enable-vdpau"} \
+	--disable-silent-rules \
 	--disable-static
 %{__make}
 
@@ -81,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{gst_major_ver}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{gst_major_ver}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
