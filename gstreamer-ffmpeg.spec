@@ -5,19 +5,19 @@
 
 %define		gstname gst-ffmpeg
 %define		gst_major_ver   0.10
-%define		gst_req_ver	0.10.22
+%define		gst_req_ver	0.10.31
 
 %include	/usr/lib/rpm/macros.gstreamer
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl.UTF-8):	Wtyczka do środowiska obróbki strumieni GStreamer używająca FFmpeg
 Name:		gstreamer-ffmpeg
-Version:	0.10.11
-Release:	2
+Version:	0.10.12
+Release:	1
 # the ffmpeg plugin is LGPL, the postproc plugin is GPL
 License:	GPL v2+ and LGPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
-# Source0-md5:	0d23197ba7ac06ea34fa66d38469ebe5
+# Source0-md5:	8507f33c56e6155a3d450dfe6de835a9
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.10
@@ -25,13 +25,13 @@ BuildRequires:	gstreamer-devel >= %{gst_req_ver}
 BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	gstreamer-plugins-base-devel >= %{gst_req_ver}
 BuildRequires:	libtool
-BuildRequires:	orc-devel >= 0.4.5
+BuildRequires:	orc-devel >= 0.4.6
 BuildRequires:	pkgconfig
 BuildRequires:	python >= 2.1
 BuildRequires:	rpmbuild(macros) >= 1.470
 %if %{with system_ffmpeg}
 # libavutil,libswscale needed
-BuildRequires:	ffmpeg-devel >= 0.6
+BuildRequires:	ffmpeg-devel >= 0.7
 %else
 BuildRequires:	bzip2-devel
 # TODO: fill the rest of ffmpeg dependencies used here
@@ -41,7 +41,7 @@ BuildRequires:	xorg-lib-libXvMC-devel
 %endif
 %endif
 Requires:	gstreamer-plugins-base >= %{gst_req_ver}
-Requires:	orc >= 0.4.5
+Requires:	orc >= 0.4.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
