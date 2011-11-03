@@ -11,16 +11,17 @@
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl.UTF-8):	Wtyczka do środowiska obróbki strumieni GStreamer używająca FFmpeg
 Name:		gstreamer-ffmpeg
-Version:	0.10.12
+Version:	0.10.13
 Release:	1
 # the ffmpeg plugin is LGPL, the postproc plugin is GPL
 License:	GPL v2+ and LGPL v2+
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
-# Source0-md5:	8507f33c56e6155a3d450dfe6de835a9
+# Source0-md5:	7f5beacaf1312db2db30a026b36888c4
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.10
+BuildRequires:	bzip2-devel
 BuildRequires:	gstreamer-devel >= %{gst_req_ver}
 BuildRequires:	gtk-doc >= 1.3
 BuildRequires:	gstreamer-plugins-base-devel >= %{gst_req_ver}
@@ -30,10 +31,9 @@ BuildRequires:	pkgconfig
 BuildRequires:	python >= 2.1
 BuildRequires:	rpmbuild(macros) >= 1.470
 %if %{with system_ffmpeg}
-# libavutil,libswscale needed
+# libavformat,libavcodec,libavutil,libpostproc,libswscale needed
 BuildRequires:	ffmpeg-devel >= 0.7
 %else
-BuildRequires:	bzip2-devel
 # TODO: fill the rest of ffmpeg dependencies used here
 %if %{with vdpau}
 BuildRequires:	libvdpau-devel
