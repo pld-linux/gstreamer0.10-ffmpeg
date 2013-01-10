@@ -10,9 +10,9 @@
 %include	/usr/lib/rpm/macros.gstreamer
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl.UTF-8):	Wtyczka do środowiska obróbki strumieni GStreamer używająca FFmpeg
-Name:		gstreamer-ffmpeg
+Name:		gstreamer0.10-ffmpeg
 Version:	0.10.13
-Release:	2
+Release:	1
 # the ffmpeg plugin is LGPL, the postproc plugin is GPL
 License:	GPL v2+ and LGPL v2+
 Group:		Libraries
@@ -22,9 +22,9 @@ URL:		http://gstreamer.net/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.10
 BuildRequires:	bzip2-devel
-BuildRequires:	gstreamer-devel >= %{gst_req_ver}
+BuildRequires:	gstreamer0.10-devel >= %{gst_req_ver}
 BuildRequires:	gtk-doc >= 1.3
-BuildRequires:	gstreamer-plugins-base-devel >= %{gst_req_ver}
+BuildRequires:	gstreamer0.10-plugins-base-devel >= %{gst_req_ver}
 BuildRequires:	libtool
 BuildRequires:	orc-devel >= 0.4.6
 BuildRequires:	pkgconfig
@@ -40,8 +40,9 @@ BuildRequires:	libvdpau-devel
 BuildRequires:	xorg-lib-libXvMC-devel
 %endif
 %endif
-Requires:	gstreamer-plugins-base >= %{gst_req_ver}
+Requires:	gstreamer0.10-plugins-base >= %{gst_req_ver}
 Requires:	orc >= 0.4.6
+Obsoletes:	gstreamer-ffmpeg < 0.11
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
