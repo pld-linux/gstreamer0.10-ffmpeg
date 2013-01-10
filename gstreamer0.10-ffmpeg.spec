@@ -19,6 +19,7 @@ Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
 # Source0-md5:	7f5beacaf1312db2db30a026b36888c4
 Patch0:		gst-ffmpeg-format_string.patch
+Patch1:		gst-ffmpeg-gcc4.7-x86_64.patch
 URL:		http://gstreamer.net/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.10
@@ -71,6 +72,7 @@ najpopularniejsze formaty multimedialne.
 %prep
 %setup -q -n %{gstname}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
