@@ -1,0 +1,20 @@
+--- gst-ffmpeg-0.10.13/gst-libs/ext/libav/libavcodec/srtdec.c.orig	2013-01-10 11:03:35.000000000 +0100
++++ gst-ffmpeg-0.10.13/gst-libs/ext/libav/libavcodec/srtdec.c	2013-01-10 11:04:47.000000000 +0100
+@@ -110,7 +110,7 @@
+                                     for (j=sptr-2; j>=0; j--)
+                                         if (stack[j].param[i][0]) {
+                                             out += snprintf(out, out_end-out,
+-                                                            stack[j].param[i]);
++						    "%s", stack[j].param[i]);
+                                             break;
+                                         }
+                         } else {
+@@ -146,7 +146,7 @@
+                             for (i=0; i<PARAM_NUMBER; i++)
+                                 if (stack[sptr].param[i][0])
+                                     out += snprintf(out, out_end-out,
+-                                                    stack[sptr].param[i]);
++					    "%s", stack[sptr].param[i]);
+                         }
+                     } else if (!buffer[1] && strspn(buffer, "bisu") == 1) {
+                         out += snprintf(out, out_end-out,
