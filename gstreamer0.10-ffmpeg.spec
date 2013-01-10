@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	vdpau		# build FFmpeg without VDPAU support
-%bcond_without	system_ffmpeg	# system FFmpeg (note: upstream does not accept bugs with system ffmpeg)
+%bcond_with	system_ffmpeg	# system FFmpeg (note: upstream does not accept bugs with system ffmpeg)
 
 %define		gstname gst-ffmpeg
 %define		gst_major_ver   0.10
