@@ -7,7 +7,6 @@
 %define		gst_major_ver   0.10
 %define		gst_req_ver	0.10.31
 
-%include	/usr/lib/rpm/macros.gstreamer
 Summary:	GStreamer Streaming-media framework plug-in using FFmpeg
 Summary(pl.UTF-8):	Wtyczka do środowiska obróbki strumieni GStreamer używająca FFmpeg
 Name:		gstreamer0.10-ffmpeg
