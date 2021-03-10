@@ -15,7 +15,7 @@ Release:	1
 # the ffmpeg plugin is LGPL, the postproc plugin is GPL
 License:	GPL v2+ and LGPL v2+
 Group:		Libraries
-Source0:	http://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
+Source0:	https://gstreamer.freedesktop.org/src/gst-ffmpeg/%{gstname}-%{version}.tar.bz2
 # Source0-md5:	7f5beacaf1312db2db30a026b36888c4
 Patch0:		gst-ffmpeg-format_string.patch
 Patch1:		gst-ffmpeg-gcc4.7-x86_64.patch
@@ -30,7 +30,7 @@ BuildRequires:	libtool
 BuildRequires:	orc-devel >= 0.4.6
 BuildRequires:	pkgconfig
 BuildRequires:	python >= 2.1
-BuildRequires:	rpmbuild(macros) >= 1.470
+BuildRequires:	rpmbuild(macros) >= 1.745
 %if %{with system_ffmpeg}
 # libavformat,libavcodec,libavutil,libpostproc,libswscale needed
 BuildRequires:	ffmpeg-devel >= 0.7
